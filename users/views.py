@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed, ParseError
+
+
 from .serializers import UserSerializer
 from .models import User
 import jwt
@@ -73,6 +75,8 @@ class ForgotPasswordView(APIView):
         data = request.data
         email = data.get('email')
         new_password = data.get('new_password')  # The new password sent from React
+        print(email)
+        print(new_password)
 
         if not email or not new_password:
             raise ParseError("Email and new password are required.")
