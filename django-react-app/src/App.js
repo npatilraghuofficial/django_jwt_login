@@ -5,6 +5,8 @@ import Login_ from './components/Login_';
 import Register from './components/Register';
 import UserInfo from './components/UserInfo';
 import Logout from './components/Logout';
+import ForgotPassword from './components/ForgotPasswordUP';
+
 // import Login from './components/Login_'; // Change this to the actual correct import
 import * as api from './api';
 
@@ -19,6 +21,17 @@ const App = () => {
       }
     } catch (error) {
       console.error('Login error:', error);
+    }
+  };
+
+  const handleForgotPassword = async (data) => {
+    try {
+      const response = await api.forgotPassword(data);
+      if (response.status === 200) {
+        setLoggedIn(true);
+      }
+    } catch (error) {
+      console.error('Forgot Password error:', error);
     }
   };
 
@@ -61,6 +74,8 @@ const App = () => {
           }
         />
         <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+
       </Routes>
     </Router>
   );

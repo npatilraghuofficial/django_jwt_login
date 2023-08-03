@@ -10,6 +10,8 @@ const Login = ({ handleLogin, handleForgotPassword }) => {
     handleLogin({ email, password });
   };
 
+ 
+
   return (
     <div style={styles.container}>
 
@@ -28,13 +30,10 @@ const Login = ({ handleLogin, handleForgotPassword }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" style={styles.button}>Login</button>
+        <NavLink to="/forgotPassword">forgotPassword</NavLink>
+
       </form>
-      <button
-        style={styles.forgotPassword}
-        onClick={handleForgotPassword}
-      >
-        Forgot Password?
-      </button>
+     
 <NavLink to="/register">Register now</NavLink>
 {/* <NavLink to="/logout"> Logout</NavLink> */}
 

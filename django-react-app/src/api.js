@@ -4,12 +4,12 @@ const BASE_URL = 'http://127.0.0.1:8000/api/';
 
 export const login = (data) => axios.post(`${BASE_URL}login`, data)
   .then(response => {
-    alert("Login successful"); // Display alert on success
-    return response; // Pass the response further if needed
+    alert("Login successful");
+    return response;
   })
   .catch(error => {
-    alert("Login failed"); // Display alert on error
-    throw error; // Re-throw the error for further handling
+    alert("Login failed");
+    throw error;
   });
 
 export const register = (data) => axios.post(`${BASE_URL}register`, data)
@@ -39,5 +39,15 @@ export const logout = () => axios.post(`${BASE_URL}logout`)
   })
   .catch(error => {
     alert("Logout failed");
+    throw error;
+  });
+
+  export const forgotPassword = (email, newPassword) => axios.post(`${BASE_URL}forgotpassword`, { email, new_password: newPassword })
+  .then(response => {
+    alert("Password reset successful");
+    return response;
+  })
+  .catch(error => {
+    alert("Failed to initiate password reset");
     throw error;
   });

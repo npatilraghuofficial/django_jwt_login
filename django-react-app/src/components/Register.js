@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import * as api from '../api';
+
+import ForgotPassword from './ForgotPasswordUP';
+
+
 
 const Register = ({ handleRegister }) => {
   const [name, setName] = useState('');
@@ -23,6 +28,8 @@ const Register = ({ handleRegister }) => {
       {isRegistered ? (
         <><p style={styles.successMessage}>Registration successful! You can now login.</p>
         <NavLink to="/login">Login now</NavLink>
+        <NavLink to="/forgotPassword">forgotPassword</NavLink>
+
         </>
 
         
@@ -50,6 +57,8 @@ const Register = ({ handleRegister }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit" style={styles.button}>Register</button>
+          <NavLink to="/forgotPassword">forgotPassword</NavLink>
+
         </form>
       )}
     </div>

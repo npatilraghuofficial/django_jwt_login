@@ -17,14 +17,8 @@ class RegisterView(APIView):
 
 class LoginView(APIView):
     def post(self, request):
-        email = request.data.get('email')
-        password = request.data.get('password')
-
-        if not email or not password:
-            raise ParseError("Both email and password are required.")
-
-        if not re.match(r'^\w+@\w+\.\w+$', email):
-            raise ParseError("Invalid email format.")
+        email = request.data['email']
+        password = request.data['password']
 
         user = User.objects.filter(email=email).first()
 
@@ -71,5 +65,29 @@ class LogoutView(APIView):
         response.delete_cookie('jwt')
         response.data = {
             'message': 'Logged out successfully!'
+        }
+        return response
+
+class ForgotPasswordView(APIView):
+    def post(self, request):
+        data = request.data
+        email = data.get('email')
+        new_password = data.get('new_password')  # The new password sent from React
+
+        if not email or not new_password:
+            raise ParseError("Email and new password are required.")
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            raise NotFound('User not found!')
+
+        # Set the new password for the user
+        user.set_password(new_password)
+        user.save()
+
+        response = Response()
+        response.data = {
+            'message': 'Password reset successful.'
         }
         return response
