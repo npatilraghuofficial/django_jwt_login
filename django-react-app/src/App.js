@@ -7,7 +7,6 @@ import UserInfo from './components/UserInfo';
 import Logout from './components/Logout';
 import ForgotPassword from './components/ForgotPasswordUP';
 
-// import Login from './components/Login_'; // Change this to the actual correct import
 import * as api from './api';
 
 const App = () => {
@@ -39,7 +38,6 @@ const App = () => {
     try {
       const response = await api.register(data);
       if (response.status === 201) {
-        // Optionally, you could automatically log in the user after registration
       }
     } catch (error) {
       console.error('Registration error:', error);
